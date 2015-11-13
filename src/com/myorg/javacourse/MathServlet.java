@@ -7,10 +7,14 @@ import com.myorg.javacourse.MathEx3.*;
 public class MathServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		int x =1;
-		int y =1;
 		
-		resp.setContentType("text/plain");
-		resp.getWriter().println("1+1 = " + MathEx3.sum(x,y));
+		//MathEx3 MathEx3 = new MathEx3();
+		String resultStr = com.myorg.javacourse.MathEx3.getResults();
+		
+		
+		resp.setContentType("text/html");
+		resp.getWriter().println(resultStr);
 	}
-}
+
+	}
+
