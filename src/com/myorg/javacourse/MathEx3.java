@@ -43,9 +43,9 @@ public class MathEx3 {
 		String line2 = new String("calculation 2: Length of opposite where angle B is " + angleB + " is " + opposite);
 		String line3 = new String("calculation 3: Power of base " + x + " and exp " + y + " is " + pow);
 		
-		//String ​resultStr = line1 + line2 + line3;
-		//system.out.println (​resultStr);
-		return line1;
+		String resultStr = line1 + "<br>" + line2 + "<br>" + line3;
+		
+		return resultStr;
 	}
 
 

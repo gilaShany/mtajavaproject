@@ -11,7 +11,6 @@ public class MathServlet extends HttpServlet {
 		//MathEx3 MathEx3 = new MathEx3();
 		String resultStr = com.myorg.javacourse.MathEx3.getResults();
 		
-		
 		resp.setContentType("text/html");
 		resp.getWriter().println(resultStr);
 	}
