@@ -7,7 +7,16 @@ public class Stock {
 private String symbol;
 private float ask; //ערך הקנייה של המנייה
 private float bid; //ערך המכירה של המנייה
-private Date date;
+private static Date date;
+
+public Stock(){
+	this.symbol = "unknown";
+	this.ask = 0;
+	this.bid = 0;
+	this.date = new Date();
+}
+
+
 public String getSymbol() {
 	return symbol;
 }
@@ -34,7 +43,7 @@ public void setDate(Date date) {
 } 
 
 public  String getHtmlDescription() {
-final String result = "Symbol= " + this.symbol + " Ask= " + this.ask + " Bid= " + this.bid + " Date= " + this.date;
+ String result = "<b>Stock Symbol= </b>" + getSymbol() + "<b> Ask= </b>" + getAsk() + "<b> Bid= </b>" + getBid() +" <b>Date= </b>"+ date.getMonth()+ "/" +date.getDay() + "/" + date.getYear();
 return result;
 }
 

@@ -23,6 +23,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/math</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>Stock</servlet-name>
+		<servlet-class>com.myorg.javacourse.StockDetailsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Stock</servlet-name>
+		<url-pattern>/stockdetails</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
