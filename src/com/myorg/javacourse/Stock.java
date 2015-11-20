@@ -1,6 +1,9 @@
 package com.myorg.javacourse;
 
 import java.util.Date;
+import java.text.*;
+
+import com.google.api.server.spi.types.SimpleDate;
 
 public class Stock {
 	
@@ -43,7 +46,9 @@ public void setDate(Date date) {
 } 
 
 public  String getHtmlDescription() {
- String result = "<b>Stock Symbol= </b>" + getSymbol() + "<b> Ask= </b>" + getAsk() + "<b> Bid= </b>" + getBid() +" <b>Date= </b>"+ date.getMonth()+ "/" +date.getDay() + "/" + date.getYear();
+	SimpleDateFormat sDate = new SimpleDateFormat("MM/dd/yyyy");
+ String result = "<b>Stock Symbol= </b>" + getSymbol() + "<b> Ask= </b>" + getAsk() + "<b> Bid= </b>" + getBid() +
+		 		" <b>Date= </b>"+ sDate.format(getDate());
 return result;
 }
 
