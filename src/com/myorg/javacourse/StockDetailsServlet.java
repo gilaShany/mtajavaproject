@@ -14,7 +14,7 @@ public class StockDetailsServlet extends HttpServlet {
 		Stock stock1 = new Stock();
 		Stock stock2 = new Stock();
 		Stock stock3 = new Stock();
-		Date date = new Date();
+		Date date = new Date (2014,11,15);
 		
 		stock1.setSymbol("PIH");
 		stock1.setAsk((float) 13.1);
@@ -31,12 +31,9 @@ public class StockDetailsServlet extends HttpServlet {
 		stock3.setBid((float) 31.5);
 		stock3.setDate(date);
 		
-		//Stock stock = new Stock();
 		String resultStr = stock1.getHtmlDescription() + "<br>" + stock2.getHtmlDescription() + "<br>" + stock3.getHtmlDescription();
 		resp.getWriter().println(resultStr);
 		
-	}
-
-	
-	}
+	}	
+}
 
