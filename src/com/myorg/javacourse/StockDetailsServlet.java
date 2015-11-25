@@ -2,7 +2,9 @@ package com.myorg.javacourse;
 
 import java.io.IOException;
 import java.util.Date;
+
 import com.myorg.javacourse.Stock.*;
+
 import javax.servlet.http.*;
 
 @SuppressWarnings("serial")
@@ -14,9 +16,9 @@ public class StockDetailsServlet extends HttpServlet {
 		Stock stock1 = new Stock();
 		Stock stock2 = new Stock();
 		Stock stock3 = new Stock();
-		Date date1 = new Date (2014,11,15);
-		Date date2 = new Date (2014,11,15);
-		Date date3 = new Date (2014,11,15);
+		Date date1 = new Date(114, 10, 15);
+		Date date2 = new Date (114,10,15);
+		Date date3 = new Date (114,10,15);
 		
 		stock1.setSymbol("PIH");
 		stock1.setAsk((float) 13.1);

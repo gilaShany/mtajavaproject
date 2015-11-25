@@ -17,6 +17,7 @@ public Stock(){
 	this.ask = 0;
 	this.bid = 0;
 	this.date = new Date();
+	
 }
 
 
@@ -47,8 +48,9 @@ public void setDate(Date date) {
 } 
 
 public  String getHtmlDescription() {
-	String result = "<b>Stock Symbol= </b>" + getSymbol() + "<b> Ask= </b>" + getAsk() + "<b> Bid= </b>" + getBid() +
-					" <b>Date= </b>"+ getDate().getMonth() + "/" + getDate().getDate() + "/" + getDate().getYear();
+	SimpleDateFormat sDate = new SimpleDateFormat("M/d/yyyy");
+	 String result = "<b>Stock Symbol= </b>" + getSymbol() + "<b> Ask= </b>" + getAsk() + "<b> Bid= </b>" + getBid() +
+		 		" <b>Date= </b>"+ sDate.format(getDate());
 return result;
 }
 
