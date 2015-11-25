@@ -19,12 +19,6 @@ public Stock(){
 	this.date = new Date();
 }
 
-public Stock(String symbol, float ask, float bid, Date date){
-	this.date = new Date(date.getYear(),date.getMonth(),date.getDate());
-	this.symbol = symbol;
-	this.ask = ask;
-	this.bid = bid;
-}
 
 public String getSymbol() {
 	return symbol;
@@ -48,7 +42,8 @@ public Date getDate() {
 	return date;
 }
 public void setDate(Date date) {
-	this.date = new Date(date.getYear(),date.getMonth(),date.getDate()); 
+	this.date = date;
+
 } 
 
 public  String getHtmlDescription() {
@@ -58,5 +53,4 @@ return result;
 }
 
 }
-
 
