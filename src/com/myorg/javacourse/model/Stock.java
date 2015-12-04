@@ -1,10 +1,14 @@
-package com.myorg.javacourse;
+package com.myorg.javacourse.model;
 
 import java.util.Date;
 import java.text.*;
 
 import com.google.api.server.spi.types.SimpleDate;
-
+/**
+ * this class....
+ * @author Shany
+ *
+ */
 public class Stock {
 	
 private String symbol;
@@ -24,6 +28,22 @@ public Stock(){
 	this.bid = 0;
 	this.date = new Date();
 	
+}
+
+public Stock(String symbol, float ask, float bid, Date date){
+	this.symbol = symbol;
+	this.ask = ask;
+	this.bid = bid;
+	this.date = new Date();
+}
+
+public Stock(Stock s){
+	this(s.getSymbol(),s.getAsk(),s.getBid(),new Date(s.getDate().getTime()));
+	//this.symbol = s.getSymbol();
+	//this.ask = s.getAsk();
+	//this.bid = s.getBid();
+	//this.date = new Date(s.getDate().getTime());
+
 }
 
 public String getSymbol() {

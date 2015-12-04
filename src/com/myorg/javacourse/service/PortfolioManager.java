@@ -2,8 +2,8 @@ package com.myorg.javacourse.service;
 
 import java.util.Date;
 
-import com.myorg.javacourse.Stock;
 import com.myorg.javacourse.model.Portfolio;
+import com.myorg.javacourse.model.Stock;
 
 public class PortfolioManager {
 	
@@ -35,6 +35,8 @@ public class PortfolioManager {
 		stock3.setBid((float) 31.5);
 		stock3.setDate(date3);
 		portfolio.addStock(stock3);
+		
+	
 		
 		return portfolio;
 	}

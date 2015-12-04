@@ -1,9 +1,10 @@
-package com.myorg.javacourse;
+package com.myorg.javacourse.servlet;
 
 import java.io.IOException;
 import java.util.Date;
 
-import com.myorg.javacourse.Stock.*;
+import com.myorg.javacourse.model.Stock;
+import com.myorg.javacourse.model.Stock.*;
 
 import javax.servlet.http.*;
 
