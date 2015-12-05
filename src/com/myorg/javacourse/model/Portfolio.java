@@ -14,21 +14,30 @@ public class Portfolio {
 		protfolioSize=0;
 	}
 	
-	public Portfolio(Stock[] stocks, String title){
-		this.stocks = stocks;
+	public Portfolio( String title, int protfolioSize){
+		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
 		this.title = title;
+		this.protfolioSize = protfolioSize;
 	}
 	
 	public Portfolio(Portfolio p){
-		this(new Stock[p.stocks.length],p.getTitle());
-		Stock[] copy = new Stock[MAX_PORTFOLIO_SIZE];
-		for (int i=0 ; i< 3 ; i++){
-			copy[i]= stocks[i];
+		this(p.getTitle(),p.getProtfolioSize());
+		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
+		for (int i=0 ; i< protfolioSize ; i++){
+			this.stocks[i]= new Stock(p.stocks[i]);
 		}
 		//this.title = p.getTitle();
 			
 	}
 	
+	public int getProtfolioSize() {
+		return protfolioSize;
+	}
+
+	public void setProtfolioSize(int protfolioSize) {
+		this.protfolioSize = protfolioSize;
+	}
+
 	public void addStock (Stock stock){
 		this.stocks[protfolioSize]= stock;
 		protfolioSize++;

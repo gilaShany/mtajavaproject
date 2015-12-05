@@ -18,7 +18,7 @@ public class StockDetailsServlet extends HttpServlet {
 		Stock stock2 = new Stock();
 		Stock stock3 = new Stock();
 		Date date1 = new Date(114, 10, 15);
-		Date date2 = new Date (114,10,15);
+		Date date2 = new Date (114,10,16);
 		Date date3 = new Date (114,10,15);
 		
 		stock1.setSymbol("PIH");

@@ -26,7 +26,7 @@ public Stock(){
 	this.symbol = "unknown";
 	this.ask = 0;
 	this.bid = 0;
-	this.date = new Date();
+	this.date = date;
 	
 }
 
@@ -34,15 +34,11 @@ public Stock(String symbol, float ask, float bid, Date date){
 	this.symbol = symbol;
 	this.ask = ask;
 	this.bid = bid;
-	this.date = new Date();
+	this.date = date;
 }
 
 public Stock(Stock s){
 	this(s.getSymbol(),s.getAsk(),s.getBid(),new Date(s.getDate().getTime()));
-	//this.symbol = s.getSymbol();
-	//this.ask = s.getAsk();
-	//this.bid = s.getBid();
-	//this.date = new Date(s.getDate().getTime());
 
 }
 
