@@ -4,12 +4,16 @@ import java.util.Date;
 
 import com.myorg.javacourse.model.Portfolio;
 import com.myorg.javacourse.model.Stock;
-
+/**
+ * this class manages the portfolio
+ * @author Shany
+ *
+ */
 public class PortfolioManager {
 	
 	public Portfolio getPortfolio() {
 		Portfolio portfolio = new Portfolio();
-		portfolio.setTitle("Shany & Gila");
+		portfolio.setTitle("Portfolio #1");
 		
 		Stock stock1 = new Stock();
 		Stock stock2 = new Stock();
@@ -35,9 +39,7 @@ public class PortfolioManager {
 		stock3.setBid((float) 31.5);
 		stock3.setDate(date3);
 		portfolio.addStock(stock3);
-		
 	
-		
 		return portfolio;
 	}
 

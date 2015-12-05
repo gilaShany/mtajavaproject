@@ -5,7 +5,7 @@ import java.text.*;
 
 import com.google.api.server.spi.types.SimpleDate;
 /**
- * this class....
+ * This class presents the stocks in the portfolio
  * @author Shany
  *
  */
@@ -22,6 +22,9 @@ private final static int SELL = 1;
 private final static int REMOVE = 2;
 private final static int HOLD = 3;
 
+/**
+ * stock constractors
+ */
 public Stock(){
 	this.symbol = "unknown";
 	this.ask = 0;
@@ -36,7 +39,10 @@ public Stock(String symbol, float ask, float bid, Date date){
 	this.bid = bid;
 	this.date = date;
 }
-
+/**
+ * stock copy constractor
+ * @param s
+ */
 public Stock(Stock s){
 	this(s.getSymbol(),s.getAsk(),s.getBid(),new Date(s.getDate().getTime()));
 
@@ -67,13 +73,15 @@ public void setDate(Date date) {
 	this.date = date;
 
 } 
-
+/**
+ * This method returns a string of stock
+ * @return
+ */
 public  String getHtmlDescription() {
 	SimpleDateFormat sDate = new SimpleDateFormat("M/d/yyyy");
 	 String result = "<b>Stock Symbol= </b>" + getSymbol() + "<b> Ask= </b>" + getAsk() + "<b> Bid= </b>" + getBid() +
 		 		" <b>Date= </b>"+ sDate.format(getDate());
-return result;
-}
+	 return result;
+	}
 
 }
-
