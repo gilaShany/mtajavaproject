@@ -6,11 +6,15 @@ import com.myorg.javacourse.model.Portfolio;
 import com.myorg.javacourse.model.Stock;
 /**
  * this class manages the portfolio
- * @author Shany
+ * @author Shany & Gila
  *
  */
 public class PortfolioManager {
 	
+	/**
+	 * This method returns a portfolio
+	 * @return portfolio
+	 */
 	public Portfolio getPortfolio() {
 		Portfolio portfolio = new Portfolio();
 		portfolio.setTitle("Portfolio #1");

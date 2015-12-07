@@ -2,7 +2,7 @@ package com.myorg.javacourse.model;
 
 /**
  * This class presents the portfolio
- * @author Shany
+ * @author Shany & Gila
  *
  */
 public class Portfolio {
@@ -11,30 +11,30 @@ public class Portfolio {
 	private String title;
 	private Stock [] stocks;
 	public int protfolioSize; 
-/**
- * constractors	
- */
+	
+	/**
+	 * portfolio constractors	
+	 */
 	public Portfolio() {
 		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];	
 		protfolioSize=0;
 	}
 	
-	public Portfolio( String title, int protfolioSize){
-		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
-		this.title = title;
+	public Portfolio(String title, int protfolioSize ){
 		this.protfolioSize = protfolioSize;
+		this.title = title;
+		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
 	}
+	
 	/**
-	 * copy constractor
-	 * @param p
+	 * portfolio copy constractor
+	 * @param p the copied portfolio
 	 */
 	public Portfolio(Portfolio p){
-		this(p.getTitle(),p.getProtfolioSize());
-		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
-		for (int i=0 ; i< protfolioSize ; i++){
-			this.stocks[i]= new Stock(p.stocks[i]);
-		}
-			
+		this (p.getTitle(), p.getProtfolioSize());
+		for (int i=0; i < p.protfolioSize; i++){
+			this.stocks[i] = new Stock (p.getStocks()[i]); 
+		}		
 	}
 	
 	public int getProtfolioSize() {
@@ -61,10 +61,11 @@ public class Portfolio {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-/**
- * This method returns a string of stocks in the portfolio
- * @return
- */
+	
+	/**
+	 * This method returns a string of stocks in the portfolio
+	 * @return the string description of stocks in the portfolio
+	 */
 	public String getHtmlString () {
 		String str = "<h1>" + this.title + "</h1>";
 		for (int i=0; i< this.protfolioSize; i++){
