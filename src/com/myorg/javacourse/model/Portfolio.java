@@ -11,7 +11,7 @@ public class Portfolio {
 	private	static final int MAX_PORTFOLIO_SIZE = 5;
 	private String title;
 	private Stock [] stocks;
-	public int protfolioSize; 
+	public int portfolioSize; 
 	private float balance;
 	public enum ALGO_RECOMMENDATION {BUY, SELL, REMOVE, HOLD};
 	
@@ -21,15 +21,15 @@ public class Portfolio {
 	public Portfolio() {
 		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
 		this.balance=0;
-		protfolioSize=0;
+		portfolioSize=0;
 	}
 	
 	/**
 	 * Portfolio constractor 
-	 * @param title the name of the portfolio, protfolioSize the size of the portfolio
+	 * @param title the name of the portfolio, portfolioSize the size of the portfolio
 	 */
-	public Portfolio(String title, int protfolioSize ){
-		this.protfolioSize = protfolioSize;
+	public Portfolio(String title, int portfolioSize ){
+		this.portfolioSize = portfolioSize;
 		this.title = title;
 		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
 	}
@@ -39,14 +39,14 @@ public class Portfolio {
 	 * @param p the copied portfolio
 	 */
 	public Portfolio(Portfolio p){
-		this (p.getTitle(), p.getProtfolioSize());
-		for (int i=0; i < p.protfolioSize; i++){
+		this (p.getTitle(), p.getportfolioSize());
+		for (int i=0; i < p.portfolioSize; i++){
 			this.stocks[i] = new Stock (p.getStocks()[i]); 
 		}		
 	}
 	
 	/**
-	 * Update portfolio Balance 
+	 * This method updates the portfolios Balance 
 	 * @param amount the amount you want to remove or add from portfolio Balance 
 	 */
 	public void updateBalance(float amount){
@@ -59,26 +59,26 @@ public class Portfolio {
 	}
 	
 	/**
-	 * Add a stock to portfolio stocks array
+	 * This method adds a stock to the portfolio stocks array
 	 * @param stock the stock you want to add
 	 * @return success or fail
 	 */
 	public boolean addStock (Stock stock){
 		boolean inTheStocks = false;
-		for (int i=0 ; i < this.protfolioSize && !inTheStocks; i++){
+		for (int i=0 ; i < this.portfolioSize && !inTheStocks; i++){
 			if (stock.getSymbol().equals(this.stocks[i].getSymbol())){
 				inTheStocks = true;
 			}
 		}
 		if (!inTheStocks){
-			if (this.protfolioSize > MAX_PORTFOLIO_SIZE-1){
+			if (this.portfolioSize > MAX_PORTFOLIO_SIZE-1){
 				System.out.println("Cant add new stock, portfolio can have only " + MAX_PORTFOLIO_SIZE + " stocks");
 				return false;
 			}
 			else{
-				this.stocks[protfolioSize]= stock;
-				this.stocks[protfolioSize].setStockQuantity(0);
-				protfolioSize++;	
+				this.stocks[portfolioSize]= stock;
+				this.stocks[portfolioSize].setStockQuantity(0);
+				portfolioSize++;	
 				return true;
 			}	
 		}
@@ -86,7 +86,7 @@ public class Portfolio {
 	}
 	
 	/**
-	 *	Remove a stock from portfolio stocks array
+	 *	This method removes a stock from the portfolio stocks array
 	 * @param symbol the symbol of the stock you want to remove
 	 * @return success or fail
 	 */
@@ -99,10 +99,10 @@ public class Portfolio {
 		didItWentWell = sellStock(symbol,-1);
 		
 		if (didItWentWell){
-			for (int j = i ; j < this.protfolioSize-1 ; j++){
+			for (int j = i ; j < this.portfolioSize-1 ; j++){
 				this.stocks[j] = this.stocks[j+1];
 			}
-			this.protfolioSize --;
+			this.portfolioSize --;
 			return true;
 		}
 		else{
@@ -111,7 +111,7 @@ public class Portfolio {
 	}
 	
 	/**
-	 * Sell a stock from portfolio 
+	 * This method sells an amount of a stock from the portfolio 
 	 * @param symbol the symbol of the stock you want to sell, quantity the quantity you want to  sell
 	 * @return success or fail
 	 */
@@ -140,7 +140,7 @@ public class Portfolio {
 	}
 	
 	/**
-	 * Buy stocks 
+	 * This method buys an amount of a stock 
 	 * @param stock the stock you want to buy, quantity the quantity you want to  buy
 	 * @return success or fail
 	 */
@@ -148,7 +148,7 @@ public class Portfolio {
 		boolean wasFound = false;
 		int i=0;
 		
-		for (i=0 ; i < this.protfolioSize && !wasFound ; i++){
+		for (i=0 ; i < this.portfolioSize && !wasFound ; i++){
 			if (stock.getSymbol().equals(this.stocks[i].getSymbol())){
 				wasFound = true;
 			}
@@ -182,12 +182,12 @@ public class Portfolio {
 		}	
 	}
 	
-	public int getProtfolioSize() {
-		return protfolioSize;
+	public int getportfolioSize() {
+		return portfolioSize;
 	}
 
-	public void setProtfolioSize(int protfolioSize) {
-		this.protfolioSize = protfolioSize;
+	public void setportfolioSize(int portfolioSize) {
+		this.portfolioSize = portfolioSize;
 	}
 	
 	public Stock [] getStocks(){
@@ -203,13 +203,13 @@ public class Portfolio {
 	}
 	
 	/**
-	 * Calcultae the protfolio stocks value
-	 * @return the protfolio stocks value
+	 * This method calcultaes the portfolio stocks value
+	 * @return the portfolio stocks value
 	 */
 	public float getStockValue (){
 		float sum =0;
-		for (int i=0 ; i < this.protfolioSize; i++){
-			sum += (this.stocks[i].getAsk() * this.stocks[i].getStockQuantity());
+		for (int i=0 ; i < this.portfolioSize; i++){
+			sum += (this.stocks[i].getBid() * this.stocks[i].getStockQuantity());
 		}
 		return sum;
 	}
@@ -219,8 +219,8 @@ public class Portfolio {
 	}
 	
 	/**
-	 * Calcultae the protfolio total value
-	 * @return the protfolio stocks value plus the balance
+	 * This method calcultaes the portfolio total value
+	 * @return the portfolio stocks value plus the balance
 	 */
 	public float getTotalValue(){
 		return (getStockValue()+ getBalance());
@@ -232,7 +232,7 @@ public class Portfolio {
 	 */
 	public String getHtmlString () {
 		String str = "<h1>" + this.title + "</h1>";
-		for (int i=0; i< this.protfolioSize; i++){
+		for (int i=0; i< this.portfolioSize; i++){
 			str += "<br>"+ this.stocks[i].getHtmlDescription();
 		}
 		str += "<br>"+ "Total Portfolio Value: " + getTotalValue() + " $, Total Stocks Value: "
