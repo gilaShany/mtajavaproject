@@ -22,7 +22,7 @@ public class Stock {
 	private int stockQuantity;
 	
 	/**
-	 * stock constractors
+	 * stock constractor
 	 */
 	public Stock(){
 		this.symbol = "unknown";
@@ -32,7 +32,10 @@ public class Stock {
 		this.date = date;
 		
 	}
-	
+	/**
+	 * stock constractor
+	 * @param symbol, ask, bid, date, stockQuantity
+	 */
 	public Stock(String symbol, float ask, float bid, Date date,int stockQuantity){
 		this.symbol = symbol;
 		this.ask = ask;
@@ -52,28 +55,35 @@ public class Stock {
 	public String getSymbol() {
 		return symbol;
 	}
+	
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
+	
 	public float getAsk() {
 		return ask;
 	}
+	
 	public void setAsk(float ask) {
 		this.ask = ask;
 	}
+	
 	public float getBid() {
 		return bid;
 	}
+	
 	public void setBid(float bid) {
 		this.bid = bid;
 	}
+	
 	public Date getDate() {
 		return date;
 	}
+	
 	public void setDate(Date date) {
 		this.date = date;
-	
 	} 
+	
 	public int getStockQuantity() {
 		return stockQuantity;
 	}
