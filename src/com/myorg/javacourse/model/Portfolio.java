@@ -1,16 +1,19 @@
 package com.myorg.javacourse.model;
 
+import org.algo.model.PortfolioInterface;
+import org.algo.model.StockInterface;
+
 /**
  * This class presents the portfolio
  * @author Shany & Gila
  *
  */
 
-public class Portfolio {
+public class Portfolio implements PortfolioInterface {
 	
 	private	static final int MAX_PORTFOLIO_SIZE = 5;
 	private String title;
-	private Stock [] stocks;
+	private StockInterface [] stocks;
 	public int portfolioSize; 
 	private float balance;
 	public enum ALGO_RECOMMENDATION {BUY, SELL, REMOVE, HOLD};

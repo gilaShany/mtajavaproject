@@ -3,6 +3,8 @@ package com.myorg.javacourse.model;
 import java.util.Date;
 import java.text.*;
 
+import org.algo.model.StockInterface;
+
 import com.google.api.server.spi.types.SimpleDate;
 import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
 
@@ -12,7 +14,7 @@ import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
  *
  */
 
-public class Stock {
+public class Stock implements StockInterface{
 	
 	private String symbol;
 	private float ask; 
