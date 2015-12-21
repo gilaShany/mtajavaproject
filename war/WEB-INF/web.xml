@@ -16,6 +16,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>InitServlet</servlet-name>
+		<servlet-class>com.myorg.javacourse.servlet.InitServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>InitServlet</servlet-name>
+		<url-pattern>/initServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>Portfolio</servlet-name>
 		<servlet-class>org.algo.servlet.PortfolioServlet</servlet-class>
 	</servlet>

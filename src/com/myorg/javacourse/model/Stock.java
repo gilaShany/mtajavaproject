@@ -48,10 +48,10 @@ public class Stock implements StockInterface{
 
 	/**
 	 * stock copy constractor
-	 * @param s the copied stock
+	 * @param stockInterface the copied stock
 	 */
-	public Stock(Stock s){
-		this(s.getSymbol(),s.getAsk(),s.getBid(),new Date(s.getDate().getTime()), s.getStockQuantity());
+	public Stock(StockInterface stockInterface){
+		this(stockInterface.getSymbol(),stockInterface.getAsk(),stockInterface.getBid(),new Date(stockInterface.getDate().getTime()), ((Stock) stockInterface).getStockQuantity());
 	}
 	
 	public String getSymbol() {
@@ -78,6 +78,12 @@ public class Stock implements StockInterface{
 		this.bid = bid;
 	}
 	
+	public ALGO_RECOMMENDATION getRecommendation() {
+		return recommendation;
+	}
+	public void setRecommendation(ALGO_RECOMMENDATION recommendation) {
+		this.recommendation = recommendation;
+	}
 	public Date getDate() {
 		return date;
 	}
