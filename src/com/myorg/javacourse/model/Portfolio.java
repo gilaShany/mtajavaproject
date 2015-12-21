@@ -240,7 +240,21 @@ public class Portfolio implements PortfolioInterface {
 	public float getTotalValue(){
 		return (getStockValue()+ getBalance());
 	}
-
+	/**
+	 * This method finds a stock
+	 * @param symbol
+	 * @return stock
+	 */
+	public StockInterface findStock(String symbol) {
+		int i = 0;
+		while (!symbol.equals(stocks[i].getSymbol()) && (i < MAX_PORTFOLIO_SIZE)){
+			i++;
+		}
+		if (i >= MAX_PORTFOLIO_SIZE)
+			return null;
+		else
+			return stocks[i];
+	} 
 	/**
 	 * This method returns a string of stocks in the portfolio
 	 * @return the string description of stocks in the portfolio
@@ -254,16 +268,4 @@ public class Portfolio implements PortfolioInterface {
 				+ getStockValue () + " $, Balance:" + getBalance() + "$." + "</br>";
 		return str;
 	}
-
-	public StockInterface findStock(String symbol) {
-		int i = 0;
-		while (!symbol.equals(stocks[i].getSymbol()) && (i < MAX_PORTFOLIO_SIZE)){
-			i++;
-		}
-		if (i >= MAX_PORTFOLIO_SIZE)
-			return null;
-		else
-			return stocks[i];
-	} 
-
 }

@@ -251,7 +251,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 
 		return ret;
 	}
-
+	
 	@Override
 	public void setTitle(String title) {
 		Portfolio portfolio = (Portfolio) getPortfolio();
@@ -259,7 +259,10 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		flush(portfolio);
 		
 	}
-
+	/** 
+	 * This method updates the portfolios Balance 
+	 * @param amount the amount you want to remove or add from portfolio Balance 
+	 */
 	@Override
 	public void updateBalance(float value) throws PortfolioException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
