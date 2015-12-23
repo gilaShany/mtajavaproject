@@ -234,6 +234,15 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		}
 
 		ret.setTitle(dto.getTitle());
+		
+		int counter = 0;
+		for (StockInterface stockArray : ret.getStocks()){
+			if (stockArray != null){
+				counter++;
+			}
+		}
+		
+		ret.setportfolioSize(counter);
 		try {
 			ret.updateBalance(dto.getBalance());
 		} catch (Exception e) {

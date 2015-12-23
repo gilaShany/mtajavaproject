@@ -107,7 +107,7 @@ public class Portfolio implements PortfolioInterface {
 	 */
 	public boolean removeStock(String symbol){
 		int i=0;
-		while (!symbol.equals(stocks[i].getSymbol())){
+		while (!(symbol.equals(this.stocks[i].getSymbol()))){
 			i++;
 		}
 		boolean didItWentWell;
@@ -140,7 +140,7 @@ public class Portfolio implements PortfolioInterface {
 	 */
 	public boolean sellStock(String symbol, int quantity){
 		int i=0;
-		while (!symbol.equals(stocks[i].getSymbol())){
+		while (!symbol.equals(((Stock)this.stocks[i]).getSymbol())){
 			i++;
 		}
 		if (quantity == -1){
@@ -160,6 +160,7 @@ public class Portfolio implements PortfolioInterface {
 			((Stock)this.stocks[i]).setStockQuantity((((Stock)this.stocks[i]).getStockQuantity()-quantity)); 
 			return true;
 		}
+			
 	}
 	
 	/**
