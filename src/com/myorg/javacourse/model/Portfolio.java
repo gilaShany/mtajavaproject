@@ -143,24 +143,27 @@ public class Portfolio implements PortfolioInterface {
 		while (!symbol.equals(((Stock)this.stocks[i]).getSymbol())){
 			i++;
 		}
-		if (quantity == -1){
-			updateBalance(((Stock) this.stocks[i]).getStockQuantity()* this.stocks[i].getBid());
-			((Stock) this.stocks[i]).setStockQuantity(0);
-			return true;
+		if (((Stock) this.stocks[i]).getStockQuantity() != 0){
+			if (quantity == -1){
+				updateBalance(((Stock) this.stocks[i]).getStockQuantity()* this.stocks[i].getBid());
+				((Stock) this.stocks[i]).setStockQuantity(0);
+				return true;
+			}
+			else if ((quantity < -1)){
+				return false;
+			}
+			else if ((((Stock) this.stocks[i]).getStockQuantity() < quantity)){
+				System.out.println("Not enough stocks to sell");
+				return false;
+			}
+			else{
+				updateBalance ((quantity* this.stocks[i].getBid()));
+				((Stock)this.stocks[i]).setStockQuantity((((Stock)this.stocks[i]).getStockQuantity()-quantity)); 
+				return true;
+			}
 		}
-		else if ((quantity < -1)){
-			return false;
-		}
-		else if ((((Stock) this.stocks[i]).getStockQuantity() < quantity)){
-			System.out.println("Not enough stocks to sell");
-			return false;
-		}
-		else{
-			updateBalance ((quantity* this.stocks[i].getBid()));
-			((Stock)this.stocks[i]).setStockQuantity((((Stock)this.stocks[i]).getStockQuantity()-quantity)); 
-			return true;
-		}
-			
+		else
+			return true;	
 	}
 	
 	/**
