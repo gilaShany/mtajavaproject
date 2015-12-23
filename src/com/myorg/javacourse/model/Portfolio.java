@@ -119,14 +119,14 @@ public class Portfolio implements PortfolioInterface {
 				portfolioSize=0;
 			}
 			else{
-			for (int j = i ; j < this.portfolioSize-1 ; j++){
+				int j;
+				for (j = i ; j < this.portfolioSize-1 ; j++){
 				this.stocks[j] = this.stocks[j+1];
-			}
-			
+				}
+			this.stocks[j] = null;
 			this.portfolioSize --;
 			}
 			return true;
-			
 		}
 		else{
 			return false;
