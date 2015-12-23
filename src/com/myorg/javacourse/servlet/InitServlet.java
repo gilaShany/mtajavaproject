@@ -17,7 +17,7 @@ import org.algo.service.ServiceManager;
 public class InitServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
-		// TODO Auto-generated method stub
+		
 		super.init();
 		
 		PortfolioManager pm = new PortfolioManager();

@@ -21,6 +21,7 @@ import org.algo.service.ServiceManager;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.myorg.javacourse.model.Portfolio;
 import com.myorg.javacourse.model.Stock;
+import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
 /**
  * this class manages the portfolio
  * @author Shany & Gila
@@ -186,6 +187,11 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		}
 		
 		Stock stock = (Stock) inStock;
+		
+		if(stock.getRecommendation() == null) {
+			stock.setRecommendation(ALGO_RECOMMENDATION.HOLD);
+		}
+			
 		return new StockDto(stock.getSymbol(), stock.getAsk(), stock.getBid(), 
 				stock.getDate(), stock.getStockQuantity(), stock.getRecommendation().name());
 	}
@@ -222,7 +228,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 			for (StockDto stockDto : stocks) {
 				stockList.add(fromDto(stockDto));
 			}
-
+			
 			Stock[] stockArray = stockList.toArray(new Stock[stockList.size()]);
 			ret = new Portfolio(stockArray);
 		}
@@ -288,13 +294,17 @@ public class PortfolioManager implements PortfolioManagerInterface{
 	@Override
 	public void sellStock(String symbol, int quantity)
 			throws PortfolioException {
-		// TODO Auto-generated method stub
+		Portfolio p =(Portfolio) getPortfolio();
+		p.sellStock(symbol, quantity);
+		flush(p);
 		
 	}
 
 	@Override
 	public void removeStock(String symbol) throws PortfolioException {
-		// TODO Auto-generated method stub
+		Portfolio p =(Portfolio) getPortfolio();
+		p.removeStock(symbol);
+		flush(p);
 		
 	}
 

@@ -13,7 +13,8 @@ public class Portfolio implements PortfolioInterface {
 	
 	private	static final int MAX_PORTFOLIO_SIZE = 5;
 	private String title;
-	private StockInterface [] stocks;
+	private StockInterface[] stocks;
+	
 	public int portfolioSize; 
 	private float balance;
 	public enum ALGO_RECOMMENDATION {BUY, SELL, REMOVE, HOLD};
@@ -27,8 +28,12 @@ public class Portfolio implements PortfolioInterface {
 	/**
 	 * Portfolio constractor	
 	 */
-	public Portfolio(StockInterface[] stocks) {
-		this.stocks = stocks;
+	public Portfolio(StockInterface[] stock) {
+		stocks = new Stock[MAX_PORTFOLIO_SIZE];
+		for (int i=0 ; i<stock.length ; i++){
+			this.stocks[i] = stock[i];
+		}
+		
 		this.balance=0;
 		portfolioSize=0;
 	}
@@ -58,6 +63,7 @@ public class Portfolio implements PortfolioInterface {
 	 * This method updates the portfolios Balance 
 	 * @param amount the amount you want to remove or add from portfolio Balance 
 	 */
+	
 	public void updateBalance(float amount){
 		if (((amount < 0) && ((-amount) < this.balance)) || (amount > 0)){
 			this.balance += amount;
@@ -108,11 +114,19 @@ public class Portfolio implements PortfolioInterface {
 		didItWentWell = sellStock(symbol,-1);
 		
 		if (didItWentWell){
+			if (this.portfolioSize == 1){
+				this.stocks[0] = null;
+				portfolioSize=0;
+			}
+			else{
 			for (int j = i ; j < this.portfolioSize-1 ; j++){
 				this.stocks[j] = this.stocks[j+1];
 			}
+			
 			this.portfolioSize --;
+			}
 			return true;
+			
 		}
 		else{
 			return false;
@@ -184,7 +198,6 @@ public class Portfolio implements PortfolioInterface {
 			return false;
 		}
 		else
-	
 		{
 			((Stock) this.stocks[i]).setStockQuantity(((Stock) this.stocks[i]).getStockQuantity()+ quantity);
 			updateBalance(- (quantity * this.stocks[i].getAsk()));
