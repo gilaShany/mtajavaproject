@@ -132,7 +132,7 @@ public class Portfolio implements PortfolioInterface {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * This method sells an amount of a stock from the portfolio 
 	 * @param symbol the symbol of the stock you want to sell, quantity the quantity you want to  sell
@@ -187,9 +187,9 @@ public class Portfolio implements PortfolioInterface {
 				return false;
 			}
 		}
-		else
-			i--;
-		
+		else{
+			i--;	
+		}
 		if (quantity == -1){
 			int numOfStocksYouCanBuy;
 			numOfStocksYouCanBuy =  (int)(this.balance/stock.getAsk());
@@ -208,7 +208,7 @@ public class Portfolio implements PortfolioInterface {
 			return true;
 		}	
 	}
-	
+
 	public int getportfolioSize() {
 		return portfolioSize;
 	}
@@ -231,7 +231,9 @@ public class Portfolio implements PortfolioInterface {
 	public static int getMaxSize() {
 		return MAX_PORTFOLIO_SIZE;
 	}
-	
+	public float getBalance() {
+		return this.balance;
+	}
 	/**
 	 * This method calcultaes the portfolio stocks value
 	 * @return the portfolio stocks value
@@ -244,10 +246,6 @@ public class Portfolio implements PortfolioInterface {
 		+= (this.stocks[i].getBid() * ((Stock) this.stocks[i]).getStockQuantity());
 		}
 		return sum;
-	}
-	
-	public float getBalance() {
-		return this.balance;
 	}
 	
 	/**

@@ -195,7 +195,6 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		return new StockDto(stock.getSymbol(), stock.getAsk(), stock.getBid(), 
 				stock.getDate(), stock.getStockQuantity(), stock.getRecommendation().name());
 	}
-
 	/**
 	 * toDto - converts Portfolio to Portfolio DTO
 	 * @param portfolio
@@ -267,7 +266,6 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		return ret;
 	}
 	
-	@Override
 	public void setTitle(String title) {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		portfolio.setTitle(title);
@@ -278,43 +276,33 @@ public class PortfolioManager implements PortfolioManagerInterface{
 	 * This method updates the portfolios Balance 
 	 * @param amount the amount you want to remove or add from portfolio Balance 
 	 */
-	@Override
 	public void updateBalance(float value) throws PortfolioException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 		portfolio.updateBalance(value);
 		flush(portfolio);
 	}
-
-	@Override
+	/**
+	 * This method buys stock
+	 */
 	public void buyStock(String symbol, int quantity) throws PortfolioException {
-		/*
-		StockInterface stock = new Stock();
-		Portfolio portfolio = (Portfolio) getPortfolio();
-		stock = portfolio.findStock(symbol);
-		portfolio.buyStock(((Stock)stock),quantity);
+		Portfolio portfolio =(Portfolio) getPortfolio();
+		portfolio.buyStock((Stock)portfolio.findStock(symbol), quantity);
 		flush(portfolio);
-		*/
-		
-		Portfolio p =(Portfolio) getPortfolio();
-		p.buyStock((Stock)p.findStock(symbol), quantity);
-		flush(p);
 	}
-
-	@Override
-	public void sellStock(String symbol, int quantity)
-			throws PortfolioException {
-		Portfolio p =(Portfolio) getPortfolio();
-		p.sellStock(symbol, quantity);
-		flush(p);
-		
+	/**
+	 * This method sells stock
+	 */
+	public void sellStock(String symbol, int quantity) throws PortfolioException {
+		Portfolio portfolio =(Portfolio) getPortfolio();
+		portfolio.sellStock(symbol, quantity);
+		flush(portfolio);
 	}
-
-	@Override
+	/**
+	 * This method removes stock from portfolio
+	 */
 	public void removeStock(String symbol) throws PortfolioException {
-		Portfolio p =(Portfolio) getPortfolio();
-		p.removeStock(symbol);
-		flush(p);
-		
+		Portfolio portfolio =(Portfolio) getPortfolio();
+		portfolio.removeStock(symbol);
+		flush(portfolio);
 	}
-
 }

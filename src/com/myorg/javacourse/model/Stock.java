@@ -110,5 +110,4 @@ public class Stock implements StockInterface{
 			 		" <b>Date= </b>"+ sDate.format(getDate()) + "<b> Stock quantity: </b>" + getStockQuantity();
 		 return result;
 		}
-
 }
