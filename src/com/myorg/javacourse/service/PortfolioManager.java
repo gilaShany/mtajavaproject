@@ -233,15 +233,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		}
 
 		ret.setTitle(dto.getTitle());
-		
-		int counter = 0;
-		for (StockInterface stockArray : ret.getStocks()){
-			if (stockArray != null){
-				counter++;
-			}
-		}
-		
-		ret.setportfolioSize(counter);
+	
 		try {
 			ret.updateBalance(dto.getBalance());
 		} catch (Exception e) {
@@ -272,6 +264,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		flush(portfolio);
 		
 	}
+	
 	/** 
 	 * This method updates the portfolios Balance 
 	 * @param amount the amount you want to remove or add from portfolio Balance 
@@ -281,6 +274,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		portfolio.updateBalance(value);
 		flush(portfolio);
 	}
+	
 	/**
 	 * This method buys stock
 	 */
@@ -289,6 +283,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		portfolio.buyStock((Stock)portfolio.findStock(symbol), quantity);
 		flush(portfolio);
 	}
+	
 	/**
 	 * This method sells stock
 	 */
@@ -297,6 +292,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 		portfolio.sellStock(symbol, quantity);
 		flush(portfolio);
 	}
+	
 	/**
 	 * This method removes stock from portfolio
 	 */

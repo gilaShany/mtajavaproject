@@ -19,6 +19,9 @@ public class Portfolio implements PortfolioInterface {
 	private float balance;
 	public enum ALGO_RECOMMENDATION {BUY, SELL, REMOVE, HOLD};
 	
+	/**
+	 * Portfolio constractor	
+	 */
 	public Portfolio() {
 		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
 		this.balance=0;
@@ -27,15 +30,17 @@ public class Portfolio implements PortfolioInterface {
 	
 	/**
 	 * Portfolio constractor	
+	 * @param array of stocks
 	 */
 	public Portfolio(StockInterface[] stock) {
-		stocks = new Stock[MAX_PORTFOLIO_SIZE];
+		this.stocks = new Stock[MAX_PORTFOLIO_SIZE];
+		int counter = 0;
 		for (int i=0 ; i<stock.length ; i++){
 			this.stocks[i] = stock[i];
+			counter++;
 		}
 		
-		this.balance=0;
-		portfolioSize=0;
+		this.portfolioSize= counter;
 	}
 	
 	/**
@@ -234,6 +239,7 @@ public class Portfolio implements PortfolioInterface {
 	public float getBalance() {
 		return this.balance;
 	}
+	
 	/**
 	 * This method calcultaes the portfolio stocks value
 	 * @return the portfolio stocks value
@@ -270,6 +276,7 @@ public class Portfolio implements PortfolioInterface {
 		else
 			return stocks[i];
 	} 
+	
 	/**
 	 * This method returns a string of stocks in the portfolio
 	 * @return the string description of stocks in the portfolio
