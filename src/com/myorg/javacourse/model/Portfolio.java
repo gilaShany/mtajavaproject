@@ -3,6 +3,10 @@ package com.myorg.javacourse.model;
 import org.algo.model.PortfolioInterface;
 import org.algo.model.StockInterface;
 
+import com.myorg.javacourse.exception.BalanceException;
+import com.myorg.javacourse.exception.StockAlreadyExistsException;
+import com.myorg.javacourse.exception.StockNotExistException;
+
 /**
  * This class presents the portfolio
  * @author Shany & Gila
@@ -69,7 +73,7 @@ public class Portfolio implements PortfolioInterface {
 	 * @param amount the amount you want to remove or add from portfolio Balance 
 	 */
 	
-	public void updateBalance(float amount){
+	public void updateBalance(float amount) throws BalanceException{
 		if (((amount < 0) && ((-amount) < this.balance)) || (amount > 0)){
 			this.balance += amount;
 		}
@@ -83,7 +87,7 @@ public class Portfolio implements PortfolioInterface {
 	 * @param stock the stock you want to add
 	 * @return success or fail
 	 */
-	public boolean addStock (Stock stock){
+	public void addStock (Stock stock) throws StockAlreadyExistsException{
 		boolean inTheStocks = false;
 		for (int i=0 ; i < this.portfolioSize && !inTheStocks; i++){
 			if (stock.getSymbol().equals(this.stocks[i].getSymbol())){
@@ -93,16 +97,16 @@ public class Portfolio implements PortfolioInterface {
 		if (!inTheStocks){
 			if (this.portfolioSize > MAX_PORTFOLIO_SIZE-1){
 				System.out.println("Cant add new stock, portfolio can have only " + MAX_PORTFOLIO_SIZE + " stocks");
-				return false;
+				//return false;
 			}
 			else{
 				this.stocks[portfolioSize]= stock;
 				((Stock) this.stocks[portfolioSize]).setStockQuantity(0);
 				portfolioSize++;	
-				return true;
+				//return true;
 			}	
 		}
-		return false;
+		//return false;
 	}
 	
 	/**
@@ -110,7 +114,7 @@ public class Portfolio implements PortfolioInterface {
 	 * @param symbol the symbol of the stock you want to remove
 	 * @return success or fail
 	 */
-	public boolean removeStock(String symbol){
+	public void removeStock(String symbol) throws StockNotExistException{
 		int i=0;
 		while (!(symbol.equals(this.stocks[i].getSymbol()))){
 			i++;
@@ -131,10 +135,10 @@ public class Portfolio implements PortfolioInterface {
 			this.stocks[j] = null;
 			this.portfolioSize --;
 			}
-			return true;
+			//return true;
 		}
 		else{
-			return false;
+		//	return false;
 		}
 	}
 
@@ -143,7 +147,7 @@ public class Portfolio implements PortfolioInterface {
 	 * @param symbol the symbol of the stock you want to sell, quantity the quantity you want to  sell
 	 * @return success or fail
 	 */
-	public boolean sellStock(String symbol, int quantity){
+	public void sellStock(String symbol, int quantity) throws StockNotExistException{
 		int i=0;
 		while (!symbol.equals(((Stock)this.stocks[i]).getSymbol())){
 			i++;
@@ -152,23 +156,23 @@ public class Portfolio implements PortfolioInterface {
 			if (quantity == -1){
 				updateBalance(((Stock) this.stocks[i]).getStockQuantity()* this.stocks[i].getBid());
 				((Stock) this.stocks[i]).setStockQuantity(0);
-				return true;
+			//	return true;
 			}
 			else if ((quantity < -1)){
-				return false;
+			//	return false;
 			}
 			else if ((((Stock) this.stocks[i]).getStockQuantity() < quantity)){
 				System.out.println("Not enough stocks to sell");
-				return false;
+			//	return false;
 			}
 			else{
 				updateBalance ((quantity* this.stocks[i].getBid()));
 				((Stock)this.stocks[i]).setStockQuantity((((Stock)this.stocks[i]).getStockQuantity()-quantity)); 
-				return true;
+			//	return true;
 			}
 		}
-		else
-			return true;	
+		//else
+			//return true;	
 	}
 	
 	/**
@@ -176,7 +180,7 @@ public class Portfolio implements PortfolioInterface {
 	 * @param stock the stock you want to buy, quantity the quantity you want to  buy
 	 * @return success or fail
 	 */
-	public boolean buyStock(Stock stock, int quantity){
+	public void buyStock(Stock stock, int quantity) throws StockAlreadyExistsException{
 		boolean wasFound = false;
 		int i=0;
 		
