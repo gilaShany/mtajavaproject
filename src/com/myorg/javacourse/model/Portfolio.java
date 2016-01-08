@@ -193,7 +193,7 @@ public class Portfolio implements PortfolioInterface {
 		if (!wasFound){
 			boolean add = addStock(stock);
 			if (!add){
-				return false;
+			//	return false;
 			}
 		}
 		else{
