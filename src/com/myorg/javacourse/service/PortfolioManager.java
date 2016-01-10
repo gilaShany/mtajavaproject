@@ -19,6 +19,10 @@ import org.algo.service.PortfolioManagerInterface;
 import org.algo.service.ServiceManager;
 
 import com.google.appengine.api.datastore.DatastoreService;
+import com.myorg.javacourse.exception.BalanceException;
+import com.myorg.javacourse.exception.PortfolioFullException;
+import com.myorg.javacourse.exception.StockAlreadyExistsException;
+import com.myorg.javacourse.exception.StockNotExistException;
 import com.myorg.javacourse.model.Portfolio;
 import com.myorg.javacourse.model.Stock;
 import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
@@ -127,7 +131,7 @@ public class PortfolioManager implements PortfolioManagerInterface{
 	 * Add stock to portfolio 
 	 */
 	@Override
-	public void addStock(String symbol) {
+	public void addStock(String symbol)throws  StockAlreadyExistsException, PortfolioFullException {
 		Portfolio portfolio = (Portfolio) getPortfolio();
 
 		try {
@@ -147,6 +151,12 @@ public class PortfolioManager implements PortfolioManagerInterface{
 			flush(portfolio);
 		} catch (SymbolNotFoundInNasdaq e) {
 			System.out.println("Stock Not Exists: "+symbol);
+		}
+		catch (StockAlreadyExistsException saee){
+			throw saee;
+		}
+		catch (PortfolioFullException pfe){
+			throw pfe;
 		}
 	}
 
@@ -269,36 +279,68 @@ public class PortfolioManager implements PortfolioManagerInterface{
 	 * This method updates the portfolios Balance 
 	 * @param amount the amount you want to remove or add from portfolio Balance 
 	 */
-	public void updateBalance(float value) throws PortfolioException {
-		Portfolio portfolio = (Portfolio) getPortfolio();
-		portfolio.updateBalance(value);
-		flush(portfolio);
+	public void updateBalance(float value) throws BalanceException {
+		try{
+			Portfolio portfolio = (Portfolio) getPortfolio();
+			portfolio.updateBalance(value);
+			flush(portfolio);
+		}
+		catch (BalanceException be){
+			throw be;
+		}
 	}
 	
 	/**
 	 * This method buys stock
 	 */
-	public void buyStock(String symbol, int quantity) throws PortfolioException {
-		Portfolio portfolio =(Portfolio) getPortfolio();
-		portfolio.buyStock((Stock)portfolio.findStock(symbol), quantity);
-		flush(portfolio);
+	public void buyStock(String symbol, int quantity) throws StockAlreadyExistsException, PortfolioFullException, BalanceException {
+		try{
+			Portfolio portfolio =(Portfolio) getPortfolio();
+			portfolio.buyStock((Stock)portfolio.findStock(symbol), quantity);
+			flush(portfolio);
+		}
+		catch (StockAlreadyExistsException saee){
+			throw saee;
+		}
+		catch (PortfolioFullException pfe){
+			throw pfe;
+		}
+		catch (BalanceException be){
+			throw be;
+		}
 	}
 	
 	/**
 	 * This method sells stock
 	 */
-	public void sellStock(String symbol, int quantity) throws PortfolioException {
-		Portfolio portfolio =(Portfolio) getPortfolio();
-		portfolio.sellStock(symbol, quantity);
-		flush(portfolio);
+	public void sellStock(String symbol, int quantity) throws StockNotExistException,BalanceException {
+		try{
+			Portfolio portfolio =(Portfolio) getPortfolio();
+			portfolio.sellStock(symbol, quantity);
+			flush(portfolio);
+		}
+		catch (BalanceException be){
+			throw be;
+		}
+		catch (StockNotExistException snee){
+			throw snee;
+		}
 	}
 	
 	/**
 	 * This method removes stock from portfolio
 	 */
-	public void removeStock(String symbol) throws PortfolioException {
-		Portfolio portfolio =(Portfolio) getPortfolio();
-		portfolio.removeStock(symbol);
-		flush(portfolio);
+	public void removeStock(String symbol) throws StockNotExistException, BalanceException {
+		try{
+			Portfolio portfolio =(Portfolio) getPortfolio();
+			portfolio.removeStock(symbol);
+			flush(portfolio);
+		}
+		catch(StockNotExistException snee){
+			throw snee;
+		}
+		catch (BalanceException be){
+			throw be;
+		}
 	}
 }
